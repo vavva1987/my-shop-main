@@ -1,7 +1,7 @@
-let cart2El = document.querySelector(".cart-2");
-let addToCartBtns = document.querySelector(".add-to-cart");
+let cartToEl = document.querySelector(".cart-2");
+let addToCartBtns = document.querySelectorAll(".add-to-cart");
 
-console.log(cart2El);
+console.log(cartToEl);
 console.log(addToCartBtns);
 
 // for (let i = 0; i < addToCartBtns.length; i++) {
@@ -9,3 +9,11 @@ console.log(addToCartBtns);
 //     console.log("clicked");
 //   });
 // }
+
+addToCartBtns.forEach((item) =>
+  item.addEvenListener("click", function () {
+    // let prevProductsCount = +cartToEl.textContent;
+    // cartToEl.textContent = prevProductsCount + 1;
+    cartToEl.textContent = +cartToEl.textContent + 1;
+  })
+);
