@@ -64,3 +64,37 @@ modal.addEventListener("click", function (e) {
 $(".slide-class").slick({
   dots: true,
 });
+
+// Counter funk style
+
+let decrementBtns = document.querySelectorAll(".decrement-btn")[0];
+let incrementBtns = document.querySelectorAll(".increment-btn")[0];
+let inputFields = document.querySelectorAll(".product-quantity input")[0];
+
+console.log(inputFields);
+let currentCount = +inputFields.value;
+toggleButtonState(currentCount);
+
+function toggleButtonState(count) {
+  if (count === 1) {
+    decrementBtns.disabled = true;
+  } else {
+    decrementBtns.disabled = false;
+  }
+}
+
+incrementBtns.addEventListener("click", function () {
+  let currentCount = +inputFields.value;
+  let nextCount = currentCount + 1;
+  inputFields = nextCount;
+
+  toggleButtonState(nextCount);
+});
+
+decrementBtns.addEventListener("click", function () {
+  let currentCount = +inputFields.value;
+  let nextCount = currentCount - 1;
+  inputFields = nextCount;
+
+  toggleButtonState(nextCount);
+});
