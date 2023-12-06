@@ -71,30 +71,42 @@ let decrementBtns = document.querySelectorAll(".decrement-btn")[0];
 let incrementBtns = document.querySelectorAll(".increment-btn")[0];
 let inputFields = document.querySelectorAll(".product-quantity input")[0];
 
-console.log(inputFields);
+// incrementBtns.disabled
+
+console.log(inputFields.value);
+
 let currentCount = +inputFields.value;
 toggleButtonState(currentCount);
 
 function toggleButtonState(count) {
-  if (count === 1) {
+  if (count <= 1) {
     decrementBtns.disabled = true;
   } else {
     decrementBtns.disabled = false;
   }
 }
 
+// function toggleButtonState1(count) {
+//   if (count >= 10) {
+//     decrementBtns.disabled = true;
+//   } else {
+//     decrementBtns.disabled = false;
+//   }
+// }
+
 incrementBtns.addEventListener("click", function () {
   let currentCount = +inputFields.value;
   let nextCount = currentCount + 1;
-  inputFields = nextCount;
+  inputFields.value = nextCount;
 
   toggleButtonState(nextCount);
+  // toggleButtonState1(nextCount);
 });
 
 decrementBtns.addEventListener("click", function () {
   let currentCount = +inputFields.value;
   let nextCount = currentCount - 1;
-  inputFields = nextCount;
+  inputFields.value = nextCount;
 
   toggleButtonState(nextCount);
 });
