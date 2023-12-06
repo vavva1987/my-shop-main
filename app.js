@@ -70,43 +70,82 @@ $(".slide-class").slick({
 let decrementBtns = document.querySelectorAll(".decrement-btn")[0];
 let incrementBtns = document.querySelectorAll(".increment-btn")[0];
 let inputFields = document.querySelectorAll(".product-quantity input")[0];
+// let minCount = 1;
+// let maxCount = 5;
 
 // incrementBtns.disabled
 
-console.log(inputFields.value);
+// console.log(inputFields.value);
 
-let currentCount = +inputFields.value;
-toggleButtonState(currentCount);
+// let currentCount = +inputFields.value;
+// toggleButtonState(currentCount);
 
-function toggleButtonState(count) {
-  if (count <= 1) {
-    decrementBtns.disabled = true;
-  } else {
-    decrementBtns.disabled = false;
-  }
-}
-
-// function toggleButtonState1(count) {
-//   if (count >= 10) {
-//     decrementBtns.disabled = true;
-//   } else {
-//     decrementBtns.disabled = false;
-//   }
+// function toggleButtonState(count) {
+//   // if (count <= 1) {
+//   //   decrementBtns.disabled = true;
+//   //   incrementBtns.disabled = false;
+//   // } else if (count >= 10) {
+//   //   decrementBtns.disabled = false;
+//   //   incrementBtns.disabled = true;
+//   // } else {
+//   //   decrementBtns.disabled = false;
+//   //   incrementBtns.disabled = false;
+//   // }
+//   decrementBtns.disabled = count <= minCount;
+//   incrementBtns.disabled = count >= maxCount;
 // }
 
-incrementBtns.addEventListener("click", function () {
-  let currentCount = +inputFields.value;
-  let nextCount = currentCount + 1;
-  inputFields.value = nextCount;
+// incrementBtns.addEventListener("click", function () {
+//   let currentCount = +inputFields.value;
+//   let nextCount = currentCount + 1;
+//   inputFields.value = nextCount;
 
-  toggleButtonState(nextCount);
-  // toggleButtonState1(nextCount);
-});
+//   toggleButtonState(nextCount);
+//   // toggleButtonState1(nextCount);
+// });
 
-decrementBtns.addEventListener("click", function () {
-  let currentCount = +inputFields.value;
-  let nextCount = currentCount - 1;
-  inputFields.value = nextCount;
+// decrementBtns.addEventListener("click", function () {
+//   let currentCount = +inputFields.value;
+//   let nextCount = currentCount - 1;
+//   inputFields.value = nextCount;
 
-  toggleButtonState(nextCount);
-});
+//   toggleButtonState(nextCount);
+// });
+
+// OOP
+
+function Counter(incrementBtn, decrementBtn, inputField) {
+  this.domRefs = {
+    incrementBtn,
+    decrementBtn,
+    inputField,
+  };
+
+  this.toggleButtonState = function () {
+    let count = +this.domRefs.inputField.value;
+    this.domRefs.decrementBtn.disabled = count <= 1;
+    this.domRefs.incrementBtn.disabled = count >= 10;
+  };
+  this.toggleButtonState();
+
+  this.increment = function () {
+    this.domRefs.inputField.value = +this.domRefs.inputField.value + 1;
+    this.toggleButtonState();
+  };
+  this.decrement = function () {
+    this.domRefs.inputField.value = +this.domRefs.inputField.value - 1;
+    this.toggleButtonState();
+  };
+
+  this.domRefs.incrementBtn.addEventListener(
+    "click",
+    this.increment.bind(this)
+  );
+  this.domRefs.decrementBtn.addEventListener(
+    "click",
+    this.decrement.bind(this)
+  );
+}
+
+const counter1 = new Counter(incrementBtns, decrementBtns, inputFields);
+console.log(counter1);
