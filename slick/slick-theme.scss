@@ -72,7 +72,7 @@ $slick-opacity-not-active: 0.25 !default;
   cursor: pointer;
   background: transparent;
   color: transparent;
-  top: 50%;
+  top: 160px;
   -webkit-transform: translate(0, -50%);
   -ms-transform: translate(0, -50%);
   transform: translate(0, -50%);
@@ -92,8 +92,8 @@ $slick-opacity-not-active: 0.25 !default;
     opacity: $slick-opacity-not-active;
   }
   &:before {
-    font-family: $slick-font-family;
-    font-size: 20px;
+    font-family: "<";
+    font-size: 100px;
     line-height: 1;
     color: $slick-arrow-color;
     opacity: $slick-opacity-default;
@@ -109,7 +109,7 @@ $slick-opacity-not-active: 0.25 !default;
     right: -25px;
   }
   &:before {
-    content: $slick-prev-character;
+    content: "<";
     [dir="rtl"] & {
       content: $slick-next-character;
     }
@@ -123,7 +123,8 @@ $slick-opacity-not-active: 0.25 !default;
     right: auto;
   }
   &:before {
-    content: $slick-next-character;
+    content: ">";
+    height: 30px;
     [dir="rtl"] & {
       content: $slick-prev-character;
     }
@@ -138,7 +139,7 @@ $slick-opacity-not-active: 0.25 !default;
 
 .slick-dots {
   position: absolute;
-  bottom: -25px;
+  bottom: -150px;
   list-style: none;
   display: block;
   text-align: center;
@@ -183,7 +184,7 @@ $slick-opacity-not-active: 0.25 !default;
         font-size: $slick-dot-size;
         line-height: 20px;
         text-align: center;
-        // color: $slick-dot-color;
+        background-color: #fff;
         opacity: $slick-opacity-not-active;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
